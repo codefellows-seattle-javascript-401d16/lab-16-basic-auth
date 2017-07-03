@@ -24,6 +24,8 @@ app.use(require('../route/auth-router.js'));
 // add 404 routes
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
 
+app.use(require('./error-middleware.js'));
+
 // export start and stop
 const server = module.exports = {};
 server.isOn = false;
