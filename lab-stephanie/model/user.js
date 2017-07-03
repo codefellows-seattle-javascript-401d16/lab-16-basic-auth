@@ -39,7 +39,6 @@ userSchema.methods.tokenSeedCreate = function() {
         _tokenSeedCreate();
       });
     };
-
     _tokenSeedCreate();
   });
 };
