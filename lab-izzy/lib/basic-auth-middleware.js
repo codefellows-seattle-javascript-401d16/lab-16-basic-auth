@@ -17,10 +17,6 @@ module.exports = (req, res, next) => {
   if(!username || !password)
     return next(new Error('unauthorized username or password missing'));
 
-  console.log('decoded', decoded);
-  console.log('username', username);
-  console.log('password', password);
-
   User.findOne({username})
     .then(user => {
       if(!user)

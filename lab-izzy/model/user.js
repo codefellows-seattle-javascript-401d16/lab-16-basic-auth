@@ -1,7 +1,7 @@
 'use strict';
 
-const bcrypt = require('bcrypt'); // for hashing passwords
-const crypto = require('crypto'); // for getting random string to be tokenSeed
+const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
@@ -33,7 +33,6 @@ userSchema.methods.passwordHashCompare = function(password) {
 userSchema.methods.tokenSeedCreate = function() {
   return new Promise((resolve, reject) => {
     let tries = 1;
-
 
     let _tokenSeedCreate = () => {
       this.tokenSeed = crypto.randomBytes(32).toString('hex');
@@ -67,32 +66,3 @@ User.create = function(data) {
   return new User(data).passwordHashCreate(password)
     .then(user => user.tokenCreate());
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// yeah
