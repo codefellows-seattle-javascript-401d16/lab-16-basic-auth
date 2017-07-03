@@ -6,14 +6,16 @@ module.exports = (req, res, next) => {
   const {authorization} = req.headers;
 
   if(!authorization)
-    return next (new Error('unauthorized no authorization provided'));
+    return next(new Error('unauthorized no authorization provided'));
 
   let encoded = authorization.split('Basic ')[1];
   if(!encoded)
-    return next(new Error('unauthorized username or password missing'));
+    return next(new Error('unauthorized no basic auth provided'));
 
   let decoded = new Buffer(encoded, 'base64').toString();
   let [username, password] = decoded.split(':');
+  if(!username || !password)
+    return next(new Error('unauthorized username or password missing'));
 
   console.log('decoded', decoded);
   console.log('username', username);
