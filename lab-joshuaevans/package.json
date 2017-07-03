@@ -1,31 +1,31 @@
 {
-  "name": "16",
+  "name": "lab-joshuaevans",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "start": "node index.js",
-    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
-    "stop-db": "killall mongod"
+  "directories": {
+    "test": "test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "expect": "^1.20.2",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
     "superagent": "^3.5.2"
   },
   "devDependencies": {
-    "expect": "^1.20.2",
-    "faker": "^4.1.0",
     "mocha": "^3.4.2"
-  }
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
