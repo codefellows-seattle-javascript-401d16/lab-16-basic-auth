@@ -20,7 +20,7 @@ app.use(cors());
 
 //* routes
 
-app.use(require('..route/auth-router.js'));
+app.use(require('../route/auth-router.js'));
 
 //* 404 route
 

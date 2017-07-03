@@ -18,5 +18,8 @@ module.exports = (err, req, res, next) => {
   if(err.message.toLowerCase().includes('unauthorized'))
     return res.sendStatus(401);
 
+  if(err.message.toLowerCase().includes('failed to create tokenseed'))
+    return res.sendStatus(401);
+
   res.sendStatus(500);
 };
