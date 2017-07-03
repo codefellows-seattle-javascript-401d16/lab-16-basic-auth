@@ -19,6 +19,7 @@ describe('testing auth router', () => {
   after(server.stop);
   afterEach(cleanDB);
 
+
   describe('testing POST /api/signup', () => {
     it('should respond with a token', () => {
       return superagent.post(`${API_URL}/api/signup`)
@@ -37,7 +38,7 @@ describe('testing auth router', () => {
   });
 
   describe('testing GET /apit/login', () => {
-    it('should respond with a token', () => {
+    it.only('should respond with a token', () => {
       let tempUser;
       return mockUser.createOne()
       .then(userData => {

@@ -1,11 +1,11 @@
 'use strict';
 
-const User = require('../model/use.js');
+const User = require('../model/user.js');
 
 // basic auth middleware for login route
 // find a user in db and compare the password
-// add the user to the req object for use in thre route
-// if anything fails next an unauthorized error
+// add the user to the req object for use in the route
+// if anything fails, next an unauthorized error
 
 module.exports = (req, res, next) => {
   const {authorization} = req.headers;

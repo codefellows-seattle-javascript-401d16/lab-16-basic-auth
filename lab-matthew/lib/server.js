@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 // load routes
-app.use(require('../route/auth-routher.js'));
+app.use(require('../route/auth-router.js'));
 
 // add 404 routes
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
