@@ -1,12 +1,6 @@
-'use strict'
-
+'use strict';
 
 const User = require('../model/user.js');
-
-// basic auth middleware for login route
-// find a user in db and compare the password
-// add the user to the req object for use in thre route
-// if anything fails next an unauthorized error
 
 module.exports = (req, res, next) => {
   const {authorization} = req.headers;
@@ -23,10 +17,6 @@ module.exports = (req, res, next) => {
 
   if(!username || !password)
     return next(new Error('unauthorized username or password was missing'));
-
-  console.log('decoded', decoded);
-  console.log('username', username);
-  console.log('password', password);
 
   User.findOne({username})
   .then(user => {

@@ -1,8 +1,8 @@
 'use strict';
 
-const bcrypt = require('bcrypt'); // for hashing passwords
-const crypto = require('crypto'); // for getting random string to be tokenSeed
-const jwt = require('jsonwebtoken'); // for encrypting tokenSeed to create token
+const bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
