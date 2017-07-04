@@ -1,6 +1,6 @@
 'use strict';
 
-
+const createError = require('http-errors');
 const {Router} = require('express');
 const jsonParser = require('body-parser').json();
 
@@ -12,7 +12,9 @@ const authRouter = module.exports = new Router();
 
 authRouter.post('/api/signup', jsonParser, (req, res, next) => {
   console.log('hit /api/signup');
-
+  if(!req.body){
+    return next(new createError.BadRequest(400));
+  }
   User.create(req.body)
   .then(token => res.send(token))
   .catch(next);

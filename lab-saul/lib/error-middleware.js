@@ -2,6 +2,7 @@
 
 module.exports = (err, req, res, next) => {
   console.error(err.message);
+
   // if validation error respond with 400
   if(err.message.toLowerCase().includes('validation failed'))
     return res.sendStatus(400);
@@ -12,7 +13,7 @@ module.exports = (err, req, res, next) => {
 
   if(err.message.toLowerCase().includes('objectid failed'))
     return res.sendStatus(404);
-    
+
   if(err.message.toLowerCase().includes('unauthorized user'))
     return res.sendStatus(401);
 

@@ -53,7 +53,7 @@ userSchema.methods.tokenSeedCreate = function(){
 userSchema.methods.tokenCreate = function(){
   return this.tokenSeedCreate()
   .then(() => {
-    return jwt.sign({tokenSeed: this.tokenSeed}, process.env.APP_SECRET);
+    return jwt.sign({tokenSeed: this.tokenSeed}, process.env.SECRET);
   });
 };
 
