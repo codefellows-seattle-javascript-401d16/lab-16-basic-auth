@@ -1,0 +1,42 @@
+{
+  "name": "lab16-Zach",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) lab 16 express basic authorization ======",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
+    "stop-db": "killall mongod",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdiehlio/lab-16-basic-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zdiehlio/lab-16-basic-auth/issues"
+  },
+  "homepage": "https://github.com/zdiehlio/lab-16-basic-auth#readme",
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "faker": "^4.1.0",
+    "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.11.1",
+    "morgan": "^1.8.2",
+    "superagent": "^3.5.2"
+  }
+}
