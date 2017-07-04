@@ -2,7 +2,7 @@
 
 //load test environment
 require('dotenv').config({path: `${__dirname}/../.test.env`});
-
+// require('dotenv').config({path: `${process.cwd()}/.test.env`});
 //load npm modules
 const expect = require('expect');
 const superagent = require('superagent');

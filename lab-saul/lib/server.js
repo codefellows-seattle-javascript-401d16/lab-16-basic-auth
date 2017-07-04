@@ -1,28 +1,33 @@
 'use strict';
 
+//npm modules
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
 
+//config mongoose to connec to db
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
-//    * create app
+//create server app
 const app = express();
 
-//    * load middleware
+//load middleware
 app.use(morgan('dev'));
 app.use(cors());
 
+//load routes
 app.use(require('../route/auth-router.js'));
 
-// add 404 route
+
+//404 route for invalid path request
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
 
-
+//error handler
 app.use(require('./error-middleware.js'));
 
+//start and stop database
 
 const server = module.exports = {};
 server.isOn = false;
@@ -31,12 +36,12 @@ server.start = () => {
     if(!server.isOn){
       server.http = app.listen(process.env.PORT, () => {
         server.isOn = true;
-        console.log('server up', process.env.PORT);
+        console.log('server is running on PORT ', process.env.PORT);
         resolve();
       });
       return;
     }
-    reject(new Error('server allread running'));
+    reject(new Error('server is already running'));
   });
 };
 
@@ -45,10 +50,10 @@ server.stop = () => {
     if(server.http && server.isOn){
       return server.http.close(() => {
         server.isOn = false;
-        console.log('server down');
+        console.log('server just got killed');
         resolve();
       });
     }
-    reject(new Error('ther server is not running'));
+    reject(new Error('server is not runnnig'));
   });
 };
