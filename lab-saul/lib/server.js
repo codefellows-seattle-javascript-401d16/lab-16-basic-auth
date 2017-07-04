@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
-
+let Promise;
 //config mongoose to connec to db
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI);
@@ -22,7 +22,7 @@ app.use(require('../route/auth-router.js'));
 
 
 //404 route for invalid path request
-app.all('/api/*', (req, res, next) => res.sendStatus(404));
+app.all('/api/*', (req, res) => res.sendStatus(404));
 
 //error handler
 app.use(require('./error-middleware.js'));

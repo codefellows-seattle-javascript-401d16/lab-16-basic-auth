@@ -1,9 +1,10 @@
 'use strict';
 
-module.exports = (err, req, res, next) => {
+module.exports = (err, req, res) => {
   console.error(err.message);
+
   // if validation error respond with 400
-  if(err.message.toLowerCase().includes('validation failed'))
+  if(err.message.toLowerCase().includes('bad request'))
     return res.sendStatus(400);
 
   // if duplacte key respond with 409
@@ -12,7 +13,7 @@ module.exports = (err, req, res, next) => {
 
   if(err.message.toLowerCase().includes('objectid failed'))
     return res.sendStatus(404);
-    
+
   if(err.message.toLowerCase().includes('unauthorized user'))
     return res.sendStatus(401);
 
