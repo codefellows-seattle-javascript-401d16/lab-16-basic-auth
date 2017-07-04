@@ -7,7 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
+    "stop-db": "killall mongod",
+    "start": "node index.js",
+    "lint": "eslint .",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
