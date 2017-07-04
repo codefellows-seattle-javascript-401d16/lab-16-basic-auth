@@ -6,28 +6,20 @@ const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
 
-// module logic
-//    * config and connect to monogo
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
-//    * create app
 const app = express();
 
-//    * load middleware
-app.use(morgan('dev')); // logging util
-app.use(cors());        // enable crosite origin resoruce scripting
+app.use(morgan('dev'));
+app.use(cors());
 
-//    * load routes
 app.use(require('../route/auth-router.js'));
 
-// add 404 route
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
 
-//    * load error middleware
 app.use(require('./error-middleware.js'));
 
-// export start and stop
 const server = module.exports = {};
 server.isOn = false;
 server.start = () => {
