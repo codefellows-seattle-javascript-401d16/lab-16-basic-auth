@@ -37,8 +37,9 @@ userSchema.methods.tokenSeedCreate = function() {
       this.save()
       .then(() => resolve(this))
       .catch(err => {
-        if(tries < 1)
+        if(tries < 1){
           return reject(new Error('Server could not create Token Seed'));
+        }
         tries--;
         firstTokenSeedCreate();
       });

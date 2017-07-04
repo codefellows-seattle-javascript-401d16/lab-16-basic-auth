@@ -9,7 +9,7 @@ mockUser.createOne = () => {
   let result = {};
   result.pass = faker.internet.password();
   return new User({
-    username: faker.internet.userName(),
+    userName: faker.internet.userName(),
     email: faker.internet.email(),
   })
   .passHashCreate(result.pass)
