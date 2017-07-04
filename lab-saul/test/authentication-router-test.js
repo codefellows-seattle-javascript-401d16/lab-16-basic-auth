@@ -41,8 +41,6 @@ describe('testing auth-router', () => {
     it('should respond with code 400', () => {
       return superagent.post(`${API_URL}/api/signup`)
       .send({
-        password: 'no good',
-        email: 'test@test.com',
       })
       .catch(res => {
         console.log(res);
