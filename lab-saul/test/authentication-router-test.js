@@ -28,52 +28,52 @@ describe('testing auth-router', () => {
     it('should respond with a token', () => {
       console.log('1');
       return superagent.post(`${API_URL}/api/signup`)
-      .send({
-        username: 'test_user',
-        password: 'top secret',
-        email: 'test_user@gm.com',
-      })
-      .then(res => {
-        expect(res.status).toEqual(200);
-        console.log('2');
-      });
+        .send({
+          username: 'test_user',
+          password: 'top secret',
+          email: 'test_user@gm.com',
+        })
+        .then(res => {
+          expect(res.status).toEqual(200);
+          console.log('2');
+        });
     });
     it('should respond with code 400', () => {
       return superagent.post(`${API_URL}/api/signup`)
-      .send({
-      })
-      .catch(res => {
-        console.log(res);
-        expect(res.status).toEqual(400);
-      });
+        .send({
+        })
+        .catch(res => {
+          console.log(res);
+          expect(res.status).toEqual(400);
+        });
     });
   });
   describe('testing GET /api/login', () => {
     it('should respond with a token', () => {
       let tempUser;
       return mockUser.createOne()
-      .then(userData => {
-        tempUser = userData.user;
-        let encoded = new Buffer(`${tempUser.username}:${userData.password}`).toString('base64');
-        return superagent.get(`${API_URL}/api/login`)
-        .set('Authorization', `Basic ${encoded}`);
-      })
-      .then(res => {
-        expect(res.status).toEqual(200);
-      });
+        .then(userData => {
+          tempUser = userData.user;
+          let encoded = new Buffer(`${tempUser.username}:${userData.password}`).toString('base64');
+          return superagent.get(`${API_URL}/api/login`)
+            .set('Authorization', `Basic ${encoded}`);
+        })
+        .then(res => {
+          expect(res.status).toEqual(200);
+        });
     });
     it('should respond with code 401', () => {
       let tempUser;
       return mockUser.createOne()
-      .then(userData => {
-        tempUser = userData.user;
-        let encoded = 'Q2FzZXk1ODp1eaF3amUybnFMc1Iz';
-        return superagent.get(`${API_URL}/api/login`)
-        .set('Authorization', `Basic ${encoded}`);
-      })
-      .catch(res => {
-        expect(res.status).toEqual(401);
-      });
+        .then(userData => {
+          tempUser = userData.user;
+          let encoded = 'Q2FzZXk1ODp1eaF3amUybnFMc1Iz';
+          return superagent.get(`${API_URL}/api/login`)
+            .set('Authorization', `Basic ${encoded}`);
+        })
+        .catch(res => {
+          expect(res.status).toEqual(401);
+        });
     });
   });
 });
