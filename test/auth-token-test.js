@@ -30,7 +30,7 @@ describe('Testing user requests', () => {
         expect(res.text.length > 1).toBeTruthy();
       });
     });
-    it.only('should respond with status of 400', () => {
+    it('should respond with status of 400', () => {
       return superagent.post(`${API_URL}/api/signup`)
       .send({})
       .catch(res => {
@@ -52,6 +52,12 @@ describe('Testing user requests', () => {
         expect(res.status).toEqual(200);
         expect(res.text).toExist();
         expect(res.text.length > 1).toBeTruthy();
+      });
+    });
+    it('should respond with a 401 stats', () => {
+      return superagent.get(`${API_URL}/api/signin`)
+      .catch(res => {
+        expect(res.status).toEqual(401);
       });
     });
   });
