@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-db":"mkdir -p ./db && mongod --dpath ./db",
-    "stop-db":"killall mongod",
+    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
+    "stop-db": "killall mongod",
     "test": "mocha"
   },
   "author": "",
@@ -16,6 +16,7 @@
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",

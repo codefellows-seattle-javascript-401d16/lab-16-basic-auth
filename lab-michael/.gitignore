@@ -21,6 +21,10 @@ build/
 .Trash-*
 
 
+# dotenv files!
+
+
+
 # Mongo DB
 db
 node_modules
