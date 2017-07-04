@@ -4,6 +4,8 @@
 require('dotenv').config({path: `${__dirname}/../.test.env`});
 // require('dotenv').config({path: `${process.cwd()}/.test.env`});
 //load npm modules
+
+const PORT = process.env.PORT;
 const expect = require('expect');
 const superagent = require('superagent');
 
@@ -37,8 +39,8 @@ describe('testing auth-router', () => {
     it('should respond with code 400', () => {
       return superagent.post(`${API_URL}/api/signup`)
       .send({
-        // password: 'no good',
-        // email: 'test@test.com',
+        password: 'no good',
+        email: 'test@test.com',
       })
       .catch(res => {
         expect(res.status).toEqual(400);
