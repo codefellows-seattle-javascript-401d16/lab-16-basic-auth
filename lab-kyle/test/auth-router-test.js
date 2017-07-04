@@ -8,7 +8,7 @@ const superagent = require('superagent');
 
 // load app modules
 const server = require('../lib/server.js');
-const cleanDB = require('./lib/clean-db.js');
+const cleanDB = require('./lib/clear-db.js');
 const mockUser = require('./lib/mock-user.js');
 
 const API_URL = process.env.API_URL;
@@ -36,7 +36,7 @@ describe('testing auth router', () => {
   });
 
   describe('testing GET /api/login', () => {
-    it.only('should respond with a token', () => {
+    it('should respond with a token', () => {
       let tempUser ;
       return mockUser.createOne()
       .then(userData => {
