@@ -11,7 +11,7 @@ mockUser.createOne = () => {
 
   return new User({
     username: faker.internet.userName(),
-    email: faker.internet.email()
+    email: faker.internet.email(),
   })
     .passwordHashCreate(result.password)
     .then(user => {
