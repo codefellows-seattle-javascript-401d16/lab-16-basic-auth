@@ -29,7 +29,7 @@ describe('testing map router', () => {
         .set('Authorization', `Bearer ${tempUserData.token}`)
         .field('title', 'The Lost Treasure of Atlantis')
         .field('hint', 'x marks the spot')
-        .attach('image', `${__dirname}/assets/treasure-map.png`);
+        .attach('image', `${__dirname}/assets/treasure-map.jpg`);
       })
       .then(res => {
         console.log('res.body', res.body);
