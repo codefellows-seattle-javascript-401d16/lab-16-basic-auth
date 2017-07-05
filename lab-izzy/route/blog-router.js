@@ -3,7 +3,7 @@
 const {Router} = require('express');
 
 const s3Upload = require('../lib/s3-upload-middleware.js');
-const bearerAuth = require('../lib/beaer-auth-middleware.js');
+const bearerAuth = require('../lib/bearer-auth-middleware.js');
 const Blog = require('../model/blog.js');
 
 const blogRouter = module.exports = new Router();
