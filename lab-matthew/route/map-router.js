@@ -10,7 +10,7 @@ const Map = require('../model/map.js');
 
 // module logic
 const mapRouter = module.exports = new Router();
-mapRouter.post('/api/articles', bearerAuth, s3Upload('image'), (req, res, next) => {
+mapRouter.post('/api/maps', bearerAuth, s3Upload('image'), (req, res, next) => {
   console.log('hit POST /api/maps');
   console.log('user', req.user);
   console.log('file', req.file);
