@@ -16,7 +16,7 @@ module.exports = (err, req, res, next) => {
   if(err.message.toLowerCase().includes('objectid failed'))
     return res.sendStatus(404);
 
-  if(err.message.toLowerCase().includes('unauthorized find one'))
+  if(err.message.toLowerCase().includes('unauthorized'))
     return res.sendStatus(401);
 
   res.sendStatus(500);
