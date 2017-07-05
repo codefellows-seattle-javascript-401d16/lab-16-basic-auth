@@ -10,7 +10,11 @@
 
  * to run server in terminal: npm run start  
 
-#routes
+# user routes
 
  * POST: '/api/signup'    
  * GET: '/api/signin'  
+
+# profile pic routes
+
+ * POST: '/api/profilepics'     
