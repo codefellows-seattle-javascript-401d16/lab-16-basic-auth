@@ -67,4 +67,12 @@ describe('testing auth router', () => {
     });
   });
 
+  describe('testing unregistered routes', () => {
+    it('should return a 404', () => {
+      return superAgent.get(`${API_URL}/api/loginsssssssss`)
+        .catch(res => {
+          expect(res.status).toEqual(404);
+        });
+    });
+  });
 });
