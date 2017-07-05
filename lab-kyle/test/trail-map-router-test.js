@@ -23,10 +23,10 @@ describe('testing trail map router', () => {
       .then(userData => {
         tempUserData = userData;
         return superagent.post(`${API_URL}/api/trailMaps`)
-        .set('authorization', 'Bearer ${tempUserData.token}')
+        .set('authorization',`Bearer ${tempUserData.token}`)
         .field('name', 'Green Mountain')
         .field('description', 'cool shit')
-        .attach('mapURI', `${__dirname}/assets/green-mtn.jpg`);
+        .attach('image', `${__dirname}/assets/green-mtn.jpg`);
       })
       .then(res => {
         console.log('res.body', res.body);
@@ -36,6 +36,38 @@ describe('testing trail map router', () => {
         expect(res.body.name).toEqual('Green Mountain');
         expect(res.body.description).toEqual('cool shit');
         expect(res.body.mapURI).toExist();
+      });
+    });
+
+    it('should respond with a 400', () => {
+      let tempUserData;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/trailMaps`)
+        .set('authorization',`Bearer ${tempUserData.token}`)
+        .field('name', 'Green Mountain')
+        .field('description', 'cool shit')
+        .attach('image', `${__dirname}/assets/green-mtn.jpg`);
+      })
+      .catch(res => {
+        expect(res.status).toEqual(400);
+      });
+    });
+
+    it('should respond with a 401', () => {
+      let tempUserData;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/trailMaps`)
+        .set('authorization',`Bearer ${tempUserData.token}`)
+        .field('name', 'Green Mountain')
+        .field('description', 'cool shit')
+        .attach('image', `${__dirname}/assets/green-mtn.jpg`);
+      })
+      .catch(res => {
+        expect(res.status).toEqual(401);
       });
     });
   });

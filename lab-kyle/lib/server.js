@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(require('../route/auth-router.js'));
+app.use(require('../route/trail-map-router.js'));
 
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
 app.use(require('./error-middleware.js'));
