@@ -16,7 +16,6 @@ profilePicRouter.post(
   s3Upload('image'),
   (req, res, next) => {
     console.log('hit POST /api/profilepics');
-
     new ProfilePic({
       userID: req.user._id.toString(),
       title: req.body.title,

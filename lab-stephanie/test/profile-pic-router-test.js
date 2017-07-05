@@ -38,5 +38,38 @@ describe.only('testing profilepic router', () => {
           expect(res.body.photoURI).toExist();
         });
     });
+    it('should respond with status 400 validation failed', () => {
+      let tempUserData;
+      return mockUser
+        .createOne()
+        .then(userData => {
+          tempUserData = userData;
+          return superagent
+            .post(`${API_URL}/api/profilepics`)
+            .set('Authorization', `Bearer ${tempUserData.token}`)
+            .field('title', 'example title')
+            .field('date', '')
+            .attach('image', `${__dirname}/assets/data.gif`);
+        })
+        .catch(err => {
+          expect(err.status).toEqual(400);
+        });
+    });
+    it('should respond with status 401 unauthorized', () => {
+      let tempUserData;
+      return mockUser
+        .createOne()
+        .then(userData => {
+          tempUserData = userData;
+          return superagent
+            .post(`${API_URL}/api/profilepics`)
+            .field('title', 'example title')
+            .field('date', Date.now())
+            .attach('image', `${__dirname}/assets/data.gif`);
+        })
+        .catch(err => {
+          expect(err.status).toEqual(401);
+        });
+    });
   });
 });
