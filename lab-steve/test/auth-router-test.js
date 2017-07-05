@@ -18,6 +18,19 @@ describe('testing auth router', () => {
   after(server.stop);
   afterEach(cleanDB);
 
+  describe('testing 404', () => {
+    it('should respond with a 404 status code if invalid route', () => {
+      return request.post(`${API_URL}/bad/route`)
+        .catch(res => {
+          expect(res.status).toEqual(404);
+          return request.get(`${API_URL}/bad/route`)
+            .catch(res => {
+              expect(res.status).toEqual(404);
+            });
+        });
+    });
+  });
+
   describe('testing POST /api/signup', () => {
     it('should respond with a 200 status code and a token', () => {
       return request.post(`${API_URL}/api/signup`)
@@ -31,6 +44,24 @@ describe('testing auth router', () => {
           expect(res.status).toEqual(200);
           expect(res.text).toExist();
           expect(res.text.length > 1).toBeTruthy();
+        });
+    });
+  });
+
+  describe('testing POST /api/signup', () => {
+    it('should respond with a 400 status code if no body sent OR invalid body', () => {
+      return request.post(`${API_URL}/api/signup`)
+        .catch(res => {
+          expect(res.status).toEqual(400);
+          return request.post(`${API_URL}/api/signup`)
+            .send({
+              username: 'test_user',
+              password: 'super special top secret',
+              // email: 'test@example.local', REMOVED TO CREATE INVALID BODY
+            })
+            .catch(res => {
+              expect(res.status).toEqual(400);
+            });
         });
     });
   });
