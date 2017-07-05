@@ -17,7 +17,7 @@ describe('testing article router', () => {
   afterEach(clearDB);
 
   describe('testing POST /api/blogs', () => {
-    it('should respond with an article', () => {
+    it('should respond with a blog post', () => {
       let tempUserData;
       return mockUser.createOne()
         .then(userData => {
