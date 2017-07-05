@@ -1,20 +1,27 @@
 'use strict';
 
-const fs = require('fs-extra');
+// node modules
 const path = require('path');
+
+// npm modules
+const fs = require('fs-extra');
 const { S3 } = require('aws-sdk');
 const multer = require('multer');
 
+// module logic
 const s3 = new S3();
 const upload = multer({ dest: `${__dirname}/../temp-assets` });
 
-module.exports = fieldname => (req, res, next) => {
-  upload.single(fieldname)(req, res, err => {
+module.exports = fieldName => (req, res, next) => {
+  //let singleMiddleware = upload.single(fieldName)
+  //singleMiddleware(req, res, (err) => {})
+
+  upload.single(fieldName)(req, res, err => {
     if (err) return next(err);
-    if (!req.file) return next(new Error('validation failed'));
+    if (!req.file) return next(new Error('validation failed no file added'));
+
     s3
       .upload({
-        // access control list: configure read/write privaliges to the objects
         ACL: 'public-read',
         Bucket: process.env.AWS_BUCKET,
         Key: `${req.file.filename}${path.extname(req.file.originalname)}`,

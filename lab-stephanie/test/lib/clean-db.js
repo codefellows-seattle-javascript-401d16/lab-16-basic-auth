@@ -1,8 +1,8 @@
 'use strict';
 
 const User = require('../../model/user.js');
-const Article = require('../../model/article.js');
+const ProfilePic = require('../../model/profile-pic.js');
 
 module.exports = () => {
-  return Promise.all([User.remove({}), Article.remove({})]);
+  return Promise.all([User.remove({}), ProfilePic.remove({})]);
 };
