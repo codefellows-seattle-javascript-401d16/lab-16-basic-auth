@@ -30,7 +30,7 @@ server.start = () => {
       });
       return;
     }
-    reject(new Error('server allread running'));
+    reject(new Error('server allready running'));
   });
 };
 
