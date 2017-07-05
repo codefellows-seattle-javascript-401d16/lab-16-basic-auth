@@ -1,8 +1,5 @@
 # Created by https://www.gitignore.io/api/osx,node
 
-# testing scripts
-createTestBeers.js
-
 # MongoDB
 db
 
@@ -65,6 +62,7 @@ typings/
 
 # dotenv environment variables file
 .env
+aws.keys
 
 ### OSX ###
 *.DS_Store
