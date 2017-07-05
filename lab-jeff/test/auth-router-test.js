@@ -33,6 +33,7 @@ describe('testing auth router', () => {
     it('should respond with a 400 status', () => {
       return superagent.post(`${API_URL}/api/signup`)
       .send({
+        userrrname: 'nicu',
         password: 'meow',
         email: 'henryc@testmail.com',
       })

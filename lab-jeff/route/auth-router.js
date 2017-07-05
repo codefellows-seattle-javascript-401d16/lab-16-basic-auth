@@ -10,6 +10,9 @@ const authRouter = module.exports = new Router();
 
 authRouter.post('/api/signup', jsonParser, (req, res, next) => {
   console.log('hit /api/signup');
+  if(!req.body.password || !req.body.username){
+    return next(new Error('Invalid body'));
+  }
 
   User.create(req.body)
   .then(token => res.send(token))
