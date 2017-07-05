@@ -7,7 +7,6 @@ const User = require('../model/user');
 const authRouter = new Router();
 
 authRouter.post('/api/signup/', jsonParser, (req, res, next) => {
-  console.log('called 2');
   User.create(req.body)
     .then(token => res.status(200).send(token))
     .catch(next);

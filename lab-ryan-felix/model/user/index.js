@@ -19,8 +19,6 @@ userSchema.methods.createPasswordHash = function(password) {
 };
 
 userSchema.methods.comparePasswordHash = function(password) {
-  console.log('in comparePasswordHash');
-  console.log(`this.password: ${this.passwordHash} -- password: ${password}`);
   return comparePasswordHash(password, this.passwordHash)
     .then(isCorrect => {
       if(isCorrect)
@@ -38,12 +36,14 @@ userSchema.methods.createTokenSeed = function() {
     let _createTokenSeed = () => {
       this.tokenSeed = createTokenSeed();
       this.save()
-        .then(() => resolve(this))
+        .then(() => {
+          resolve(this);
+        })
         .catch(() => {
           if(--tries > 0) {
             _createTokenSeed();
           } else {
-            return reject(new ServerError(`could not create a token seed after ${tries} tries`));
+            return reject(new ServerError(`could not create a token seed after 2 tries`));
           }
         });
     };
@@ -52,9 +52,9 @@ userSchema.methods.createTokenSeed = function() {
   });
 };
 
-userSchema.methods.createToken = function(tokenSeed) {
-  return this.createTokenSeed().then(() => {
-    return createToken(tokenSeed);
+userSchema.methods.createToken = function() {
+  return this.createTokenSeed().then((user) => {
+    return createToken(user.tokenSeed);
   });
 };
 

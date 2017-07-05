@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const authRouter = require('../route/auth-router.js');
+const ferretRouter = require('../route/ferret-router.js');
 const authErrorMiddleware = require('./auth-error-middleware.js');
 
 mongoose.Promise = Promise;
@@ -18,6 +19,7 @@ app.use(cors());
 
 
 app.use(authRouter);
+app.use(ferretRouter);
 app.all('/api/*', (req, res) => res.sendStatus(404));
 app.use(authErrorMiddleware);
 

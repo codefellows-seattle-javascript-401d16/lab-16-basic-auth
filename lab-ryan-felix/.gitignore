@@ -1,3 +1,7 @@
+# temp-assets folder for multer
+
+temp-assets/
+
 # MongoDB
 
 db
