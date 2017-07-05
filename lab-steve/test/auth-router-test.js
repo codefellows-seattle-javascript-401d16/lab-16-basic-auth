@@ -66,5 +66,38 @@ describe('testing auth router', () => {
     });
   });
 
+  describe('testing GET /api/login', () => {
+    it('should respond with a 201 status code when a user is not found.', () => {
+      return mockUser.createOne()
+        .then(() => {
+          let encoded = new Buffer('BAD-USERNAME:password').toString('base64');
+          return request.get(`${API_URL}/api/login`)
+            .set('Authorization', `Basic ${encoded}`);
+        })
+        .catch(res => {
+          expect(res.status).toEqual(401);
+        });
+    });
+  });
+
+  describe('testing GET /api/login', () => {
+    it('should respond with a 200 status code and a token.', () => {
+      let tempUser;
+      return mockUser.createOne()
+        .then(userData => {
+          tempUser = userData;
+          let encoded = new Buffer(`${tempUser.user.username}:${tempUser.password}`).toString('base64');
+          return request.get(`${API_URL}/api/login`)
+            .set('Authorization', `Basic ${encoded}`);
+        })
+        .then(res => {
+          console.log('returned token: ', res.text);
+          expect(res.status).toEqual(200);
+          expect(res.text).toExist();
+          expect(res.text.length > 1).toBeTruthy();
+        });
+    });
+  });
+
   // FINISH TESTS!!!!
 });

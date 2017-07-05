@@ -23,9 +23,9 @@ module.exports = (req, res, next) => {
   if (!username || !password)
     return next(new Error('unauthorized: no username or password provided.'));
 
-  console.log('decoded', decoded);
-  console.log('username', username);
-  console.log('password', password);
+  console.log('decoded: ', decoded);
+  console.log('username: ', username);
+  console.log('password: ', password);
 
   User.findOne({username})
     .then(user => {
@@ -38,7 +38,7 @@ module.exports = (req, res, next) => {
       next();
     })
     .catch(err => {
-      console.log('Error:', err);
+      console.log('Error: ', err);
       next(new Error('unauthorized: findOne falied in basic-auth-middleware.js'));
     });
 };
