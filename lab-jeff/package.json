@@ -1,7 +1,7 @@
 {
   "name": "lab-jeff",
   "version": "1.0.0",
-  "description": "This application supports a student database. It performs CRUD operations on the database.",
+  "description": "This application allows users to create an account using basic authentication",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -18,9 +18,8 @@
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
-    "http-errors": "^1.6.1",
     "jsonwebtoken": "^7.4.1",
-    "mongoose": "^4.11.0",
+    "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
     "superagent": "^3.5.2"
   },

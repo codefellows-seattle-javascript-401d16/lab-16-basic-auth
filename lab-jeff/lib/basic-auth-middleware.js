@@ -6,11 +6,11 @@ module.exports = (req, res, next) => {
   const {authorization} = req.headers;
 
   if(!authorization)
-    return next(new Error('unauthorized no authorization provieded'));
+    return next(new Error('unauthorized no authorization provided'));
 
   let encoded = authorization.split('Basic ')[1];
   if(!encoded)
-    return next(new Error('unauthorized no basic auth provieded'));
+    return next(new Error('unauthorized no basic auth provided'));
 
   let decoded = new Buffer(encoded, 'base64').toString();
   let [username, password] = decoded.split(':');
@@ -33,7 +33,7 @@ module.exports = (req, res, next) => {
     next();
   })
   .catch(err => {
-    console.log('errrrrrrr', err);
+    console.log('error', err);
     next(new Error('unauthorized find one failed in basic auth middleware'));
   });
 };

@@ -6,7 +6,7 @@ const expect = require('expect');
 const superagent = require('superagent');
 
 const server = require('../lib/server.js');
-const cleanDB = require('./lib/clear-db.js');
+const clearDB = require('./lib/clear-db.js');
 const mockUser = require('./lib/mock-user.js');
 
 const API_URL = process.env.API_URL;
@@ -14,7 +14,7 @@ const API_URL = process.env.API_URL;
 describe('testing auth router', () => {
   before(server.start);
   after(server.stop);
-  afterEach(cleanDB);
+  afterEach(clearDB);
 
   describe('testing POST /api/signup', () => {
     it('should respond with a token', () => {
@@ -63,7 +63,7 @@ describe('testing auth router', () => {
       return mockUser.createOne()
       .then(userData => {
         tempUser = userData.user;
-        let encoded = new Buffer(`${tempUser.username}:asdf`).toString('base64');
+        let encoded = new Buffer(`${tempUser.username}:jsf`).toString('base64');
         return superagent.get(`${API_URL}/api/login`)
         .set('Authorization', `Basic ${encoded}`);
       })
