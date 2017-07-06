@@ -1,9 +1,10 @@
 # Created by https://www.gitignore.io/api/osx,linux,node,vim
 
 .env
-.env.test
+.test.env
 db/
 build/
+temp-assets/
 
 ### OSX ###
 .DS_Store

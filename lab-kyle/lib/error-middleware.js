@@ -11,7 +11,7 @@ module.exports = (err, req, res, next) => {
     return res.sendStatus(400);
 
   // if user can not be authenticated resond with 401
-  if(err.message.toLowerCase().includes('unauthorized find one failed in basic auth middleware'))
+  if(err.message.toLowerCase().includes('unauthorized'))
     return res.sendStatus(401);
 
   // if duplacte key respond with 409
