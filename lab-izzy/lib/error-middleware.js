@@ -9,7 +9,7 @@ module.exports = (err, req, res, next) => {
   if(err.message.toLowerCase().includes('data and salt arguments required'))
     return res.sendStatus(401);
 
-  if(err.message.toLowerCase().includes('unauthorized username or password missing'))
+  if(err.message.toLowerCase().includes('unauthorized'))
     return res.sendStatus(401);
 
   if(err.message.toLowerCase().includes('duplicate key'))

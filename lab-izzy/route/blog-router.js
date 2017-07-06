@@ -8,10 +8,10 @@ const Blog = require('../model/blog.js');
 
 const blogRouter = module.exports = new Router();
 blogRouter.post('/api/blogs', bearerAuth, s3Upload('image'), (req, res, next) => {
-  console.log('hit POST /api/blogs');
-  console.log('user', req.user);
-  console.log('file', req.file);
-  console.log('s3Data', req.s3Data);
+  // console.log('hit POST /api/blogs');
+  // console.log('user', req.user);
+  // console.log('file', req.file);
+  // console.log('s3Data', req.s3Data);
 
   new Blog({
     title: req.body.title,
@@ -20,6 +20,9 @@ blogRouter.post('/api/blogs', bearerAuth, s3Upload('image'), (req, res, next) =>
     photoURI: req.s3Data.Location,
   })
   .save()
-  .then(blog => res.json(blog))
+  .then(blog => {
+    console.log(blog);
+    res.json(blog);
+  })
   .catch(next);
 });

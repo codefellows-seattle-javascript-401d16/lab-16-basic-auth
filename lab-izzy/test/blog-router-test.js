@@ -11,7 +11,7 @@ const mockUser = require('./lib/mock-user.js');
 
 const API_URL = process.env.API_URL;
 
-describe('testing article router', () => {
+describe('testing blog router', () => {
   before(server.start);
   after(server.stop);
   afterEach(clearDB);
@@ -37,5 +37,54 @@ describe('testing article router', () => {
           expect(res.body.photoURI).toExist();
         });
     });
+    it('should return 400 for a bad request if the body is missing or invalid', () => {
+      let tempUserData;
+      return mockUser.createOne()
+        .then(userData => {
+          tempUserData = userData;
+          return superagent.post(`${API_URL}/api/blogs`)
+          .set('Authorization', `Bearer ${tempUserData.token}`)
+          .field('title', 'female software developer in Seattle')
+          .attach('image', `${__dirname}/assets/giphy.gif`);
+        })
+        .then(res => {
+          expect(res.status).toEqual(400);
+        });
+    });
+    it('should respond with a 401 for a bad request', () => {
+      return superagent.post(`${API_URL}/api/blogs`)
+        .catch(res => {
+          expect(res.status).toEqual(401);
+          expect(res.body).toEqual(undefined);
+        });
+    });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// sup

@@ -69,7 +69,7 @@ describe('testing auth router', () => {
       return mockUser.createOne()
         .then(userData => {
           tempUser = userData.user;
-          let encoded = new Buffer(`${tempUser.username}:${userData.password}`);
+          let encoded = new Buffer(`suuuup:${userData.password}`).toString('base64');
           return superagent.get(`${API_URL}/api/login`)
             .set('Authorization', `Basic ${encoded}`);
         })
