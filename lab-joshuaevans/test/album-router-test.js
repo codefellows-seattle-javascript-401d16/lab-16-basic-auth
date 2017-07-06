@@ -32,5 +32,26 @@ describe('testing album router', () => {
         expect(res.status).toEqual(200);
       });
     });
+    it('should respond with a 401 for a bad request', () => {
+      return superagent.post(`${API_URL}/api/albums`)
+      .catch(res => {
+        expect(res.status).toEqual(401);
+        expect(res.body).toEqual(undefined);
+      });
+    });
+    it('should return 400 for invalid body', () => {
+      let tempUserData;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/albums`)
+        .set('Authorization', `Bearer ${tempUserData.token}`)
+        .field('title', 'white album')
+        .attach('image', `${__dirname}/assets/blehg.gif`);
+      })
+      .then(res => {
+        expect(res.status).toEqual(400);
+      });
+    });
   });
 });
