@@ -10,7 +10,7 @@ const multer = require('multer');
 
 // module logic
 const s3 = new S3();
-const upload = multer({dest: `../temp-assets`});
+const upload = multer({dest: `./temp-assets`});
 
 module.exports = (fieldName) => (req, res, next) => {
   upload.single(fieldName)(req, res, (err) => {

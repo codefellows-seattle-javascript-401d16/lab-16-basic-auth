@@ -21,6 +21,7 @@ app.use(cors());        //enable CORS
 
 //load router(s)
 app.use(require('../route/auth-router.js'));
+app.use(require('../route/photo-router.js'));
 
 //add 404 route
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
