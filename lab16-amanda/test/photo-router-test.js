@@ -3,6 +3,15 @@
 // load env
 require('dotenv').config({path: `${__dirname}/../.test.env`});
 
+// module.exports = (req, res, next) => {
+//   const {authorization} = req.headers;
+//
+//   if(!authorization)
+//     return next(new Error('unauthorized no authorization provided'));
+//
+//   let encoded = authorization.split('Basic ')[1]
+//   if(!encoded);
+// };
 // require npm modules
 const expect = require('expect');
 const superagent = require('superagent');

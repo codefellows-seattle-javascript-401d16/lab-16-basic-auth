@@ -7,9 +7,12 @@ const universalify = require('universalify');
 module.exports = (req, res, next) => {
   //if any of hte folowing will fial we will netx an authorizationed Error
   // check for auth header
-  let {authorization} = req.headers;
+  const {authorization} = req.headers;
+
   if(!authorization)
-    return next(new Error('unauthorized no auth header'));
+    return next(new Error('unauthorized no authorization provided'))
+
+    let 
 
 
   //check for bearer token
