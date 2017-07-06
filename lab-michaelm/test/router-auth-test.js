@@ -9,7 +9,7 @@ const superagent = require('superagent');
 
 // load app modules
 const server = require('../lib/server.js');
-const cleanDB = require('./lib/clear-db.js');
+const clearDB = require('./lib/clear-db.js');
 const mockUser = require('./model/mock-user.js');
 
 const API_URL = process.env.API_URL;
@@ -17,7 +17,7 @@ const API_URL = process.env.API_URL;
 describe('-----------------testing auth router-----------------', () => {
   before(server.start);
   after(server.stop);
-  afterEach(cleanDB);
+  afterEach(clearDB);
 
   describe('testing POST /api/signup', () => {
     it('Should respond with a token', () => {
