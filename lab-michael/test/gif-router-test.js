@@ -19,20 +19,25 @@ describe('testing this router for the gif', () => {
   after(server.stop);
   afterEach(cleanDB);
 
-  return mockUser.createOne()
-  .then(userData => {
-    tempUserData = userData;
-    return superagent.post('${API_URL}/api/giphies')
-    .set('Authorization','Bearer')
-    .field('title','alwaysSunnyPhoto')
-    .field('description','funny dancing gif')
-    .field('category','comedy');
-  })
-  .then(res => {
-    expect(res.status).toEqual(200);
-    expect(res.body.title).toEqual('alwaysSunnyPhoto');
-    expect(res.body.description).toEqual('funny dancing gif');
-    expect(res.body.userID).toEqual(tempUserData.user._id.toString());
-    expect(res.body.photoURI).toExist();
+  describe('testing the post /api/giphies', () => {
+    it('should be posting a gif to aws', () => {
+      let tempUserData;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/giphies`)
+      .set('Authorization','Bearer')
+      .field('title','alwaysSunnyPhoto')
+      .field('description','funny dancing gif')
+      .field('category','comedy');
+      })
+    .then(res => {
+      expect(res.status).toEqual(200);
+      expect(res.body.title).toEqual('alwaysSunnyPhoto');
+      expect(res.body.description).toEqual('funny dancing gif');
+      expect(res.body.userID).toEqual(tempUserData.user._id.toString());
+      expect(res.body.photoURI).toExist();
+    });
+    });
   });
 });
