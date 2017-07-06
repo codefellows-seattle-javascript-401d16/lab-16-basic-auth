@@ -4,23 +4,25 @@
   "description": "",
   "main": "index.js",
   "directories": {
-    "test": "test"
+    "test": "nyc mocha"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
-    "express": "^4.15.3",
     "expect": "^1.20.2",
+    "express": "^4.15.3",
     "faker": "^4.1.0",
+    "istanbul": "^0.4.5",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
     "superagent": "^3.5.2"
   },
   "devDependencies": {
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3"
   },
   "scripts": {
     "test": "mocha"
