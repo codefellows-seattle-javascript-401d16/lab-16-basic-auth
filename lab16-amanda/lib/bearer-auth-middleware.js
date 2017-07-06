@@ -18,14 +18,15 @@ module.exports = (req, res, next) => {
     return next(new Error('authorizated'));
 
     //decrypt the toke
-  universalify.fromCallback(jwt.verify)(token, processs.env.APP_SECRET)
+  universalify.fromCallback(jwt.verify)(token, process.env.APP_SECRET)
   //find hte user by tokenSeed
   .then(decoded => User.findOne({tokenSeed: decoded.tokenSeed}))
   .then(user => {
     if(!user)
       throw new Error('unauthorized no user found');
     //add the user to the req object
-    req.user = user;//next
+    req.user = user;
+  //next
     next();
   })
   .catch(next);

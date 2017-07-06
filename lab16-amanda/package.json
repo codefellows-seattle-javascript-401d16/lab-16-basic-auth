@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.81.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
@@ -22,7 +23,8 @@
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
-    "superagent": "^3.5.2"
+    "superagent": "^3.5.2",
+    "universalify": "^0.1.0"
   },
   "devDependencies": {
     "expect": "^1.20.2",
