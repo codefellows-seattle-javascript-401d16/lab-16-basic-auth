@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
   User.findOne({username})
     .then(user => {
       if(!user)
-        return next(new Error('unathoriZed user does not exist'));
+        return next(new Error('unauthorized user does not exist'));
       return user.passwordHashCompare(password);
     })
     .then(user => {
