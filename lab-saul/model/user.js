@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
   username: {type: String, required: true, unique: true},
   tokenSeed: {type: String, required: true, unique: true},
 });
-let Promise;
+
 
 userSchema.methods.passwordHashCreate = function(password){
   return bcrypt.hash(password, 8)

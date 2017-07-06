@@ -4,6 +4,9 @@ module.exports = (err, req, res) => {
   console.error(err.message);
 
   // if validation error respond with 400
+  if(err.message.toLowerCase().includes('validation error'))
+    return res.sendStatus(400);
+
   if(err.message.toLowerCase().includes('bad request'))
     return res.sendStatus(400);
 
