@@ -29,8 +29,6 @@ describe('testing trail map router', () => {
         .attach('image', `${__dirname}/assets/green-mtn.jpg`);
       })
       .then(res => {
-        console.log('res.body', res.body);
-
         expect(res.status).toEqual(200);
         expect(res.body.userID).toEqual(tempUserData.user._id.toString());
         expect(res.body.name).toEqual('Green Mountain');
@@ -46,7 +44,6 @@ describe('testing trail map router', () => {
         tempUserData = userData;
         return superagent.post(`${API_URL}/api/trailMaps`)
         .set('authorization',`Bearer ${tempUserData.token}`)
-        .field('name', 'Green Mountain')
         .field('description', 'cool shit')
         .attach('image', `${__dirname}/assets/green-mtn.jpg`);
       })
@@ -56,18 +53,33 @@ describe('testing trail map router', () => {
     });
 
     it('should respond with a 401', () => {
-      let tempUserData;
+      let tempUserData; // delete this
       return mockUser.createOne()
-      .then(userData => {
-        tempUserData = userData;
+      .then(userData => { // and the params
+        tempUserData = userData; // and this
         return superagent.post(`${API_URL}/api/trailMaps`)
-        .set('authorization',`Bearer ${tempUserData.token}`)
+        .set('authorization',`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblNlZWQiOiIwN2YxMDZhMThkNzIyY2Y5ZWM0ODAzMmEwYWFiZDQyMjkwOTQ4OTc0NjgzMWNkNTdmNzJjNGU1NDYwOWIyYjE0IiwiaWF0IjoxNDk5Mjk2ODc0fQ.BFi83M3-3uxdNjHGD68SnC26MMd0fs9_4q6XD5CxpTw`) // sort this shit out, it's a fucking mess.
         .field('name', 'Green Mountain')
         .field('description', 'cool shit')
         .attach('image', `${__dirname}/assets/green-mtn.jpg`);
       })
       .catch(res => {
         expect(res.status).toEqual(401);
+      });
+    });
+
+    it('should respond with a 400', () => {
+      let tempUserData;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/notTrailMaps`)
+        .set('authorization',`Bearer ${tempUserData.token}`)
+        .field('description', 'cool shit')
+        .attach('image', `${__dirname}/assets/green-mtn.jpg`);
+      })
+      .catch(res => {
+        expect(res.status).toEqual(404);
       });
     });
   });

@@ -4,6 +4,7 @@
 .env.test
 db/
 build/
+temp-assets/
 
 ### OSX ###
 .DS_Store
