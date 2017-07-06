@@ -6,7 +6,7 @@ const {S3} = require('aws-sdk');
 const multer = require('multer');
 
 const s3 = new S3();
-const upload = multer({dest: `${__dirname}/../temp=assets`});
+const upload = multer({dest: `${__dirname}/../temp-assets`});
 
 module.exports = (fieldName) => (req, res, next) => {
   upload.single(fieldName)(req, res, (err) => {
@@ -24,7 +24,7 @@ module.exports = (fieldName) => (req, res, next) => {
       .promise()
       .then((s3Data) => {
         req.s3Data = s3Data;
-        return fs.remove(req.file.filename);
+        return fs.remove(`${__dirname}/../temp-assets/${req.file.filename}`);
       })
       .then(() => next())
       .catch(next);

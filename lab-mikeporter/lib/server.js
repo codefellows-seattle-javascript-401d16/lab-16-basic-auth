@@ -14,6 +14,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use(require('../route/userAuthRouter.js'));
+app.use(require('../route/postRouter.js'));
 
 app.all('/api/*', (req, res, next) => {
   res.sendStatus(404);

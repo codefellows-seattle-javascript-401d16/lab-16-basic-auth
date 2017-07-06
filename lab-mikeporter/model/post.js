@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const postSchema = mongoose.Schema({
   title: {type: String, required: true},
   caption: {type: String, required: true},
-  jpegURI: {type: String, required: true},
+  imageURI: {type: String, required: true},
   userID: {type: mongoose.Schema.Types.ObjectId, required: true},
 });
 
