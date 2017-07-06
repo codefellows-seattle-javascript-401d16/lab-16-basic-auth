@@ -1,10 +1,10 @@
 {
-  "name": "lab-16-basic-auth",
+  "name": "lab-18-travis-ci",
   "version": "1.0.0",
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) lab 16 express basic authorization ======",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "nyc mocha",
     "run": "node index.js",
     "watch": "nodemon index.js",
     "start-db": "mkdir -p ./db && mongod --dbpath ./db",
@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/0smium/lab-16-basic-auth#readme",
   "devDependencies": {
+    "aws-sdk-mock": "^1.7.0",
     "eslint": "^4.1.1",
     "expect": "^1.20.2",
     "faker": "^4.1.0",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3"
   },
   "dependencies": {
     "aws-sdk": "^2.81.0",
