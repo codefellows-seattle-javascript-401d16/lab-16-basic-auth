@@ -2,7 +2,7 @@
 
 module.exports = (err, req, res, next) => {
   let msg = err.message.toLowerCase();
-  if(msg.includes('validation failed'))
+  if(msg.includes('validation failed') || msg.includes('failed to create tokenseed'))
     return res.sendStatus(400);
   if(msg.includes('unauthorized'))
     return res.sendStatus(401);
