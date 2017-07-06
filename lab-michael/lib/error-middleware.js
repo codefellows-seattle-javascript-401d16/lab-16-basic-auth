@@ -1,17 +1,17 @@
-'use strict'
+'use strict';
 
 module.exports = (err, req, res, next) => {
-  console.error(err.message)
+  console.error(err.message);
   // if validation error respond with 400
   if(err.message.toLowerCase().includes('validation failed'))
-    return res.sendStatus(400)
+    return res.sendStatus(400);
 
   // if duplacte key respond with 409
   if(err.message.toLowerCase().includes('duplicate key'))
-    return res.sendStatus(409)
+    return res.sendStatus(409);
 
   if(err.message.toLowerCase().includes('objectid failed'))
-    return res.sendStatus(404)
+    return res.sendStatus(404);
   console.log('this is the error message',err.message);
 
   if(err.message.toLowerCase().includes('unauthorized'))
@@ -20,5 +20,5 @@ module.exports = (err, req, res, next) => {
   if(err.message.toLowerCase().includes('arguments'))
     return res.sendStatus(401);
   console.log('this is the error message',err.message);
-  res.sendStatus(500)
-}
+  res.sendStatus(500);
+};

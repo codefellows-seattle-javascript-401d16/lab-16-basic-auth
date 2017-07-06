@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const faker = require('faker');
 const User = require('../../model/user.js');

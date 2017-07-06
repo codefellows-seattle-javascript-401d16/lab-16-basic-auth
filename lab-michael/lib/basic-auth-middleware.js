@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 const User = require('../model/user.js');
@@ -36,11 +36,11 @@ module.exports = (req, res, next) => {
   })
   .then(user => {
     req.user = user;
-     next();
+    next();
   })
   .catch(err => {
-    console.log('errrrrrrr', err)
+    console.log('errrrrrrr', err);
     next(new Error('unauthorized find one failed in basic auth middleware'));
-  })
+  });
 
-}
+};
