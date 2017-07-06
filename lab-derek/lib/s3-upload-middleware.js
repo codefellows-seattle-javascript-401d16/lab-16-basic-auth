@@ -3,7 +3,7 @@
 const path = require('path');
 
 const fs = require('fs-extra');
-const {S3} = require('aws-skd');
+const {S3} = require('aws-sdk');
 const multer = require('multer');
 
 const s3 = new S3();

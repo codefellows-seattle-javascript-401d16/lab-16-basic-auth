@@ -30,11 +30,10 @@ describe('testing pdf router', () => {
         return superagent.post(`${API_URL}/api/pdfs`)
         .set('Authorization', `Bearer ${tempUserData.token}`)
         .field('title', 'example title')
-        .field('content', 'example content')
+        .field('tag', 'example tag')
         .attach('pdf', `${__dirname}/assets/testfile.pdf`);
       })
       .then(res => {
-        console.log('res.body', res.body);
         expect(res.body.title).toEqual('example title');
         expect(res.body.tag).toEqual('example tag');
         expect(res.body.userID).toEqual(tempUserData.user._id.toString());
