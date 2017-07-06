@@ -40,5 +40,32 @@ describe('testing pdf router', () => {
         expect(res.body.pdfURI).toExist();
       });
     });
+
+    it('should respond with a 400 if no file added', () => {
+      let tempUserData;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/pdfs`)
+        .set('Authorization', `Bearer ${tempUserData.token}`)
+        .field('title', 'example title')
+        .field('tag', 'example tag');
+      })
+      .then(res => {throw res;})
+      .catch(res => {
+        expect(res.status).toEqual(400);
+      });
+    });
+
+    it('should respond with a 401 if no authorized user found', () => {
+      return superagent.post(`${API_URL}/api/pdfs`)
+      .field('title', 'example title')
+      .field('tag', 'example tag')
+      .attach('pdf', `${__dirname}/assets/testfile.pdf`)
+      .then(res => {throw res;})
+      .catch(res => {
+        expect(res.status).toEqual(401);
+      });
+    });
   });
 });//close final describe block

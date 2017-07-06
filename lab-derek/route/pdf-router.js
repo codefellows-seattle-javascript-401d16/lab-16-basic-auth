@@ -13,7 +13,7 @@ const pdfRouter = module.exports = new Router();
 
 pdfRouter.post('/api/pdfs', bearerAuth, s3Upload('pdf'), (req, res, next) => {
   console.log('hit POST /api/pdfs');
-
+  console.log('req.file', req.file);
   new PDF({
     title: req.body.title,
     tag: req.body.tag,
