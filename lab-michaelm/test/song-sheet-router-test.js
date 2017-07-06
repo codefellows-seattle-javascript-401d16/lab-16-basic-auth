@@ -20,7 +20,7 @@ describe('---------------------Testing song-sheet router---------------------', 
   afterEach(clearDB);
 
   describe('testing POST /api/song-sheet', () => {
-    it.only('should respond with a song sheet', () => {
+    it('should respond with a song sheet', () => {
       let tempUserData ;
       return mockUser.createOne()
       .then(userData => {
@@ -29,15 +29,43 @@ describe('---------------------Testing song-sheet router---------------------', 
         .set('Authorization', `Bearer ${tempUserData.token}`)
         .field('title', 'example title')
         .field('content', 'cool beans')
-        .attach('image', `${__dirname}/assets/homer.mp4`);
+        .attach('file', `${__dirname}/assets/testsheet.docx`);
       })
       .then(res => {
-        console.log('res.body', res);
         expect(res.status).toEqual(200);
         expect(res.body.content).toEqual('cool beans');
         expect(res.body.title).toEqual('example title');
         expect(res.body.userID).toEqual(tempUserData.user._id.toString());
-        expect(res.body.profilePictureURI).toExist();
+        expect(res.body.songSheetURI).toExist();
+      });
+    });
+
+    it('should respond with a 400 status code', () => {
+      let tempUserData ;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUserData = userData;
+        return superagent.post(`${API_URL}/api/songsheet`)
+        .set('Authorization', `Bearer ${tempUserData.token}`)
+        .field('title', 'example title')
+        .field('content', 'cool beans');
+      })
+      .catch(res => {
+        expect(res.status).toEqual(400);
+      });
+    });
+
+    it.only('Should respond with a 401 status code', () => {
+      let tempUser;
+      return mockUser.createOne()
+      .then(userData => {
+        tempUser = userData.user;
+        let encoded = new Buffer(`${tempUser.username}:bleh`).toString('base64');
+        return superagent.post(`${API_URL}/api/songsheet`)
+        .set(`Authorization`, `Basic ${encoded}`);
+      })
+      .catch(res => {
+        expect(res.status).toEqual(401);
       });
     });
   });

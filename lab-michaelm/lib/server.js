@@ -18,6 +18,7 @@ app.use(require('../route/leader-router.js'));
 app.use(require('../route/member-router.js'));
 app.use(require('../route/song-sheet-router.js'));
 app.use(require('../route/auth-router.js'));
+app.use(require('./s3-upload-middleware.js'));
 // 404 route
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
 // error middleware
