@@ -67,7 +67,7 @@ describe('testing auth router', () => {
   });
 
   describe('testing GET /api/login', () => {
-    it('should respond with a 201 status code when a user is not found.', () => {
+    it('should respond with a 401 status code when a user is not found.', () => {
       return mockUser.createOne()
         .then(() => {
           let encoded = new Buffer('BAD-USERNAME:password').toString('base64');
