@@ -48,3 +48,21 @@ This application allows the users to create user accounts using a post API which
   'Basic username:password'
 ```
 - returns a token
+
+## POST
+```/api/exercise```
+- Creates an exercise
+- Pass a the exerciseName, muscle worked, userId and attach the image file
+```
+  HEADERS
+  {
+
+  }
+  BODY
+  {
+    'exerciseName': 'Push Up',
+    'muscle': 'Chest'
+  }
+  ATTACH the file
+```
+- returns the exercise
