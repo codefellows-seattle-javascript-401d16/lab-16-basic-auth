@@ -19,13 +19,13 @@ describe('---------------------Testing song-sheet router---------------------', 
   after(server.stop);
   afterEach(clearDB);
 
-  describe('testing POST /api/song-sheet', () => {
+  describe('testing POST /api/resource', () => {
     it('should respond with a song sheet', () => {
       let tempUserData ;
       return mockUser.createOne()
       .then(userData => {
         tempUserData = userData;
-        return superagent.post(`${API_URL}/api/songsheet`)
+        return superagent.post(`${API_URL}/api/resource`)
         .set('Authorization', `Bearer ${tempUserData.token}`)
         .field('title', 'example title')
         .field('content', 'cool beans')
@@ -45,7 +45,7 @@ describe('---------------------Testing song-sheet router---------------------', 
       return mockUser.createOne()
       .then(userData => {
         tempUserData = userData;
-        return superagent.post(`${API_URL}/api/songsheet`)
+        return superagent.post(`${API_URL}/api/resource`)
         .set('Authorization', `Bearer ${tempUserData.token}`)
         .field('title', 'example title')
         .field('content', 'cool beans');
@@ -55,13 +55,13 @@ describe('---------------------Testing song-sheet router---------------------', 
       });
     });
 
-    it.only('Should respond with a 401 status code', () => {
+    it('Should respond with a 401 status code', () => {
       let tempUser;
       return mockUser.createOne()
       .then(userData => {
         tempUser = userData.user;
         let encoded = new Buffer(`${tempUser.username}:bleh`).toString('base64');
-        return superagent.post(`${API_URL}/api/songsheet`)
+        return superagent.post(`${API_URL}/api/resource`)
         .set(`Authorization`, `Basic ${encoded}`);
       })
       .catch(res => {

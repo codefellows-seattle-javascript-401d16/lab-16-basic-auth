@@ -10,7 +10,7 @@ const SongSheet = require('../model/song-sheet.js');
 
 // module  logic
 const songSheetRouter = module.exports = new Router();
-songSheetRouter.post('/api/songsheet', bearerAuth, s3Upload('file'), (req, res, next) => {
+songSheetRouter.post('/api/resource', bearerAuth, s3Upload('file'), (req, res, next) => {
 
   new SongSheet({
     title: req.body.title,
