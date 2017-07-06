@@ -132,3 +132,4 @@ db
 # nyc/instanbul
 .nyc_output
 coverage
+temp-assets
