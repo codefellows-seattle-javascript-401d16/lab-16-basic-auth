@@ -8,14 +8,11 @@ const User = require('../model/user.js');
 userAuthRouter.post('/api/signup', jsonParser, (req, res, next) => {
   User.create(req.body)
     .then((token) => res.send(token))
-    .catch((err) => {
-      console.log(err)
-      return next(err)
-    });
+    .catch(next);
 });
 
 userAuthRouter.get('/api/login', basicAuth, (req, res, next) => {
   req.user.tokenCreate()
     .then((token) => res.send(token))
-    .catch((next));
+    .catch(next);
 });
