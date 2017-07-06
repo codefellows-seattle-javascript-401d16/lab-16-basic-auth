@@ -2,14 +2,19 @@
 
 const jsonParser = require('body-parser').json();
 const {Router} = require('express');
-const mongod = require('mongoose');
+const basicAuth = require('../lib/basic-auth-middleware.js');
 const User = require('../model/user.js');
 
-app.post('/api/signup', jsonParser, (req, res, next) => {
+const authenticationRouter = module.exports = new Router();
 
-  res.sendStatus(400);
+authenticationRouter.post('/api/signup', jsonParser, (req, res, next) => {
+  User.create(req.body)
+    .then(token => res.send(token))
+    .catch(next);
 });
 
-app.get('/api/signin', (req, res, next) => {
-
+authenticationRouter.get('/api/signin', basicAuth, (req, res, next) => {
+  req.user.tokenCreate()
+    .then(token => res.send(token))
+    .catch(next);
 });
