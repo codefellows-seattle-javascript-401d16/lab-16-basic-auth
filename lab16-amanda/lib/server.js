@@ -15,6 +15,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(require('../route/auth-router.js'));
+app.use(require('../route/photo-router.js'));
 
 app.all('/api/*', (req, res, next) => res.sendStatus(404));
 
@@ -45,6 +46,6 @@ server.stop = () => {
         resolve();
       });
     }
-    reject(new Error('ther server is not running'));
+    reject(new Error('the server is not running'));
   });
 };
