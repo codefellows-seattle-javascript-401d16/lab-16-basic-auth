@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "nyc mocha",
     "start": "node index.js",
     "start-db": "mkdir -p ./db && mongod --dbpath ./db",
     "stop-db": "killall mongod",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "expect": "^1.20.2",
     "faker": "^4.1.0",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3"
   }
 }
