@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/osx,node
 
+# Temp S3 Assets
+temp-assets
+
 # MongoDB
 db
 

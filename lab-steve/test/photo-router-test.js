@@ -28,7 +28,7 @@ describe('testing photo router', () => {
             .set('Authorization', `Bearer ${tempUserData.token}`)
             .field('title', 'example title')
             .field('content', 'example content')
-            .attach('image', './test/assets/data.gif');
+            .attach('image', './test/assets/kata-status.png');
         })
         .then(res => {
           console.log('res.body: ', res.body);
@@ -40,4 +40,34 @@ describe('testing photo router', () => {
         });
     });
   });
+
+  describe('testing POST /api/photos without a body', () => {
+    it('should respond with a 400 status code', () => {
+      let tempUserData;
+      return mockUser.createOne()
+        .then(userData => {
+          tempUserData = userData;
+          return request.post(`${API_URL}/api/photos`)
+            .set('Authorization', `Bearer ${tempUserData.token}`);
+        })
+        .catch(res => {
+          expect(res.body).toNotExist();
+          expect(res.status).toEqual(400);
+        });
+    });
+  });
+
+  describe('testing POST /api/photos without authentication', () => {
+    it('should respond with a 401 status code.', () => {
+      return request.post(`${API_URL}/api/photos`)
+        .field('title', 'example title')
+        .field('content', 'example content')
+        .attach('image', './test/assets/kata-status.png')
+        .catch(res => {
+          expect(res.body).toNotExist();
+          expect(res.status).toEqual(401);
+        });
+    });
+  });
+
 });
