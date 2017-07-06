@@ -1,5 +1,5 @@
 'use strict';
-console.log('Loaded song-sheet-router file');
+
 // npm
 const {Router} = require('express');
 
@@ -18,7 +18,13 @@ songSheetRouter.post('/api/resource', bearerAuth, s3Upload('file'), (req, res, n
     userID: req.user._id.toString(),
     songSheetURI: req.s3Data.Location,
   })
-  .save()
-  .then(data => res.json(data))
-  .catch(next);
+    .save()
+    .then(data => res.json(data))
+    .catch(next);
+});
+
+songSheetRouter.delete('/api/resource/:id', bearerAuth, (req, res, next) => {
+  SongSheet.findOneAndRemove({userID: req.user._id, _id: req.params._id})
+    .then(() => res.sendStatus(204))
+    .catch(next);
 });
