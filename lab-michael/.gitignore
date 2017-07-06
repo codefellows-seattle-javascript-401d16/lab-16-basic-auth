@@ -22,7 +22,8 @@ build/
 
 
 # dotenv files!
-
+.env
+.test.env
 
 
 # Mongo DB
