@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
 
   let token = authorization.split('Bearer ')[1];
   if (!token)
-    return next(new Error('unauthorzied no token'));
+    return next(new Error('unauthorized no token'));
 
   universalify.fromCallback(jwt.verify)(token, process.env.APP_SECRET)
     .then((decoded) => User.findOne({tokenSeed: decoded.tokenSeed}))
