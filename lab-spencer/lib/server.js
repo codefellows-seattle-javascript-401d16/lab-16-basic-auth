@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI);
 const express = require('express');
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 app.use(morgan('dev'));
 
 app.use(require('../route/authentication-router.js'));

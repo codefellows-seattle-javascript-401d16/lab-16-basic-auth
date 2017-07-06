@@ -16,8 +16,18 @@ describe('Authentication Router', () => {
   after(server.stop);
   afterEach(cleanDB);
 
+  describe('GET non existent route', () => {
+    return superagent.get(`${API_URL}/api/laskdasd`)
+      .then(res => {
+        throw res;
+      })
+      .catch(res => {
+        expect(res.status).toEqual(404);
+      });
+  });
+
   describe('POST /api/signup', () => {
-    it('Should respond with a token', () => {
+    it('Should respond with a token (post)', () => {
       return superagent.post(`${API_URL}/api/signup`)
         .send({
           username: 'tester',
@@ -30,22 +40,49 @@ describe('Authentication Router', () => {
           expect(res.text.length > 1).toBeTruthy();
         });
     });
+    it('Should respond 400 bad request', () => {
+      return superagent.post(`${API_URL}/api/signup`)
+        .send({
+          username: 'asdads',
+          password: 'asdadasda',
+        })
+        .then(res => {
+          throw res;
+        })
+        .catch(res => {
+          expect(res.status).toEqual(400);
+          expect(res.body).toNotExist();
+        });
+    });
   });
 
-  describe('GET /api/login', () => {
-    it.only('Should respond with a token', () => {
+  describe('GET /api/signin', () => {
+    it('Should respond with a token (get)', () => {
       let tempUser;
       return mockUser.createOne()
         .then(userData => {
           tempUser = userData.user;
           let encoded = new Buffer(`${tempUser.username}:${userData.password}`).toString('base64');
-          return superagent.get(`${API_URL}/api/login`)
+          return superagent.get(`${API_URL}/api/signin`)
             .set('Authorization', `Basic ${encoded}`);
         })
         .then(res => {
           expect(res.status).toEqual(200);
           expect(res.text).toExist();
           expect(res.text.length > 1).toBeTruthy();
+        });
+    });
+    it('Should respond 401 unauthorized', () => {
+      let tempUser;
+      return mockUser.createOne()
+        .then(userData => {
+          tempUser = userData.user;
+          let encoded = new Buffer(`${tempUser.username}:wrongPASS`).toString('base64');
+          return superagent.get(`${API_URL}/api/signin`)
+            .set('Authorization', `Basic ${encoded}`);
+        })
+        .catch(res => {
+          expect(res.status).toEqual(401);
         });
     });
   });

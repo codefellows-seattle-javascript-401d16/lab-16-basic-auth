@@ -2,7 +2,7 @@
 
 const User = require('../../model/user.js');
 
-module.expots = () => {
+module.exports = () => {
   return Promise.all([
     User.remove({}),
   ]);

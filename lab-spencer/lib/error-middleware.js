@@ -1,11 +1,14 @@
 'use strict';
 
-module.exports = (req, res, err, next) => {
-  if(err.message.toLowerCase().includes('validation failed'))
+module.exports = (err, req, res, next) => {
+  let msg = err.message.toLowerCase();
+  if(msg.includes('validation failed') || msg.includes('failed to create tokenseed'))
     return res.sendStatus(400);
-  if(err.message.toLowerCase().includes('duplicate key'))
+  if(msg.includes('unauthorized'))
+    return res.sendStatus(401);
+  if(msg.includes('duplicate key'))
     return res.sendStatus(409);
-  if(err.message.toLowerCase().includes('objectid failed'))
+  if(msg.includes('objectid failed'))
     return res.sendStatus(404);
   res.sendStatus(500);
 };

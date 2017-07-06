@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
   let [username, password] = decoded.split(':');
 
   if(!username || !password)
-    return next(new Error('Unauthorized, username or password required'));
+    return next(new Error('Unauthorized, username and password required'));
 
   console.log('decoded', decoded);
   console.log('username', username);
@@ -33,7 +33,6 @@ module.exports = (req, res, next) => {
       next();
     })
     .catch(err => {
-      console.log('err', err);
       next(new Error('Unauthorized, findOne failed in basic-auth-middleware'));
     });
 };
