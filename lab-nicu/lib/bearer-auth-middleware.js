@@ -20,7 +20,6 @@ module.exports = (req, res, next) => {
       return User.findOne({tokenSeed: decoded.tokenSeed});
     })
     .then(user =>{
-      console.log(user);
       if(!user)
         return next(httpError(401, 'unauthorized user not found'));
       req.user = user;
