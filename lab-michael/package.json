@@ -6,7 +6,8 @@
   "scripts": {
     "start-db": "mkdir -p ./db && mongod --dbpath ./db",
     "stop-db": "killall mongod",
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslintrc ."
   },
   "author": "",
   "license": "ISC",

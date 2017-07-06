@@ -7,7 +7,7 @@ const bearerAuth = require('../lib/bearer-auth-middleware.js');
 const Gif = require('../model/gif.js');
 
 
-const gifRouter = module.exports = new Router()
+const gifRouter = module.exports = new Router();
 
 gifRouter.post('/api/giphies', bearerAuth, s3Upload('image'), (req,res, next) => {
   new Gif({
@@ -15,4 +15,7 @@ gifRouter.post('/api/giphies', bearerAuth, s3Upload('image'), (req,res, next) =>
     description: req.body.description,
     gifURI: req.s3Data.Location,
   })
-}
+  .save()
+  .then(gif => res.json(gif))
+  .catch(next);
+});
