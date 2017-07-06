@@ -1,0 +1,19 @@
+{
+  "name": "lab-16-basic-auth",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) lab 16 express basic authorization ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amandakoster/lab-16-basic-auth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amandakoster/lab-16-basic-auth/issues"
+  },
+  "homepage": "https://github.com/amandakoster/lab-16-basic-auth#readme"
+}

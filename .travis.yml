@@ -17,3 +17,4 @@ before_script: npm i
 script:
   - npm test
   - npm run lint
+before_install: cd lab18-amanda
