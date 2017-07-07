@@ -15,7 +15,8 @@ let server = module.exports = {};
 app.use(cors());
 app.use(morgan('dev'));
 
-app.use(require('../route/auth-router.js'));
+app.use(require('../route/exercise-router.js'));
+app.use(require('../route/basic-auth-router.js'));
 app.use(require('./error-handler.js'));
 
 server.isOn = false;

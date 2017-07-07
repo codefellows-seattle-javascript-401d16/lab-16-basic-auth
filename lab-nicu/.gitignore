@@ -3,7 +3,7 @@
 db/
 build/
 *.env
-
+temp-assets
 ### OSX ###
 .DS_Store
 .AppleDouble
