@@ -1,7 +1,7 @@
 'use strict';
 
 // npm modules\
-require('dotenv').config({path: `${__dirname}/./.env`});
+require('dotenv').config({path: `${__dirname}/../.env`});
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
@@ -30,11 +30,11 @@ app.all('/api/*', (req, res, next) => res.sendStatus(404));
 //    * load error middleware
 app.use(require('./error-middleware.js'));
 
-app.use(require('./basic-auth-middleware.js'));
+// app.use(require('./basic-auth-middleware.js'));
 
-app.use(require('./bearer-auth-middleware.js'));
+// app.use(require('./bearer-auth-middleware.js'));
 
-app.use(require('s3-upload-middleware.js'));
+// app.use(require('s3-upload-middleware.js'));
 
 // export start and stop
 const server = module.exports = {};

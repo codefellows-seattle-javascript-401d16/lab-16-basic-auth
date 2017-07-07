@@ -15,7 +15,7 @@ const upload = multer({dest: `${__dirname}/../temp-assets`});
 module.exports = (fieldName) => (req, res, next) => {
   //let singleMiddleware = upload.single(fieldName)
   //singleMiddleware(req, res, (err) => {})
-
+console.log('hitting the s3 stuff!!!!!');
   upload.single(fieldName)(req, res, (err) => {
     if(err)
       return next(err);

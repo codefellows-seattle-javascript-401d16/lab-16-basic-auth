@@ -35,7 +35,7 @@ describe('testing auth router', () => {
       });
     });
 
-    it.only('should respond without a body... seeing the error', () => {
+    it('should respond without a body... seeing the error', () => {
       return superagent.post(`${API_URL}/api/signup`)
       .send({})
       .then(res => {throw res})
@@ -51,7 +51,7 @@ describe('testing auth router', () => {
       return mockUser.createOne()
       .then(userData => {
         tempUser = userData.user;
-        console.log('tempUser', tempUser);
+        // console.log('tempUser', tempUser);
         let encoded = new Buffer(`${tempUser.username}:${userData.password}`).toString('base64');
         return superagent.get(`${API_URL}/api/login`)
         .set('Authorization', `Basic ${encoded}`);
@@ -68,7 +68,7 @@ describe('testing auth router', () => {
       return mockUser.createOne()
       .then(userData => {
         tempUser = userData.user;
-        console.log('401 error testing tempUser', tempUser);
+        // console.log('401 error testing tempUser', tempUser);
         let encoded = new Buffer(`${tempUser.username}:wrongpasswordddd`).toString('base64');
         return superagent.get(`${API_URL}/api/login`)
         .set('Authorization', `Basic ${encoded}`);
