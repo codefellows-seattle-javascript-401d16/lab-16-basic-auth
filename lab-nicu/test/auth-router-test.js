@@ -1,7 +1,6 @@
 'use strict';
 
 require('dotenv').config({ path: `${process.cwd()}/.test.env` });
-
 const expect = require('expect');
 const superAgent = require('superagent');
 
