@@ -98,6 +98,4 @@ describe('testing auth router', () => {
         });
     });
   });
-
-  // FINISH TESTS!!!!
 });
