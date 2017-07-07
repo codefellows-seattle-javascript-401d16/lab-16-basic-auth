@@ -1,7 +1,7 @@
 # README
 
 ---
-This application allows the users to create user accounts using a post API which utilizes basic authentication.
+This application allows the users to create user accounts using a post API which utilizes basic authentication and also creates an exercise.
 ---
 
 ### Requirement
