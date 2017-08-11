@@ -48,7 +48,6 @@ describe('testing photo router', () => {
         expect(res.body.userID).toEqual(tempUserData.user._id.toString());
         expect(res.body.photoURI).toExist();
       });
-    });
     it('should respond with a 401', () => {
       return superagent.post(`${API_URL}/api/photos`)
       .send()
