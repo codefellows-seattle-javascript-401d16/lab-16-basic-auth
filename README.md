@@ -1,5 +1,11 @@
 ![cf](https://i.imgur.com/7v5ASc8.png) lab 16 express basic authorization
 ======
+Lab 18:
+<!-- Setup NYC code coverage -->
+Get Travis-CI setup for your project fork
+must have a linter task
+must have a test task
+add a travis project badge to your README.md
 
 # To Submit this Assignment
   * fork this repository
