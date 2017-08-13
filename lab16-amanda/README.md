@@ -1,36 +1,24 @@
-![cf](https://i.imgur.com/7v5ASc8.png) lab 16 express basic authorization
+express basic authorization
 ======
 
-# To Submit this Assignment
-  * fork this repository
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-duncan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+## Features
+This project includes a package.json that lists all dependencies and developer dependencies which include:
+* .eslintrc
+* .env and .test.env file
+* .gitignore
 
-# Build Tool Instructions
-<!-- * create a package.json that lists all dependencies and developer dependencies
-* include an .eslintrc
-* use a .env and .test.env file **but do not include it**
-* include a .gitignore
- * **add the string `db` to your gitignore**
- * **add the string `node_modules` to your gitignore**
- * **add the string `.env` to your gitignore**
- * **add the string `.test.env` to your gitignore** -->
+## Organization
+* The code is organized in these directories:
+* db - use the command `mongod --dbpath ./db` to start mongod using this directory
+* lib
+* model
+* route
+* test
+* HTTP Server using `express`
+* http-errors` npm module with`error-response` middleware
 
-<!-- * include a readme with a project description and route docs -->
-
-# Directions
-<!-- * Create these directories to organize your code:
- * db - use the command `mongod --dbpath ./db` to start mongod using this directory
- * lib
- * model
- * route
- * test
-* Create a HTTP Server using `express`
-* Use the `http-errors` npm  module with the new`error-response` middleware from lecture
-* Create a **User Model** using mongoose with the properties `username`, `password`, and `findHash`
+## User Model
+* Mongoose with the properties `username`, `password`, and `findHash`
  * The user must have a unique username and tokenSeed
  * the user must have an email
  * The user must never store the password as plain text (hash the password)
@@ -39,25 +27,25 @@
 * use the `body-parser` express middleware to on `POST` and `PUT` routes
 * using the express `Router` create an auth router with routes for **signup** and **signin** -->
 
-<!-- ## Server Endpoints
-### `/api/signup`
+## Server Endpoints
+* `/api/signup`
 * `POST` request
- * the client should pass the username and password in the body of the request
- * the server should respond with a token generated using jsonwebtoken and the users findHash
- * the server should respond with a 400 Bad Request to failed request
+* the client should pass the username and password in the body of the request
+* the server should respond with a token generated using jsonwebtoken and the users findHash
+* the server should respond with a 400 Bad Request to failed request
 
 ### `/api/signin`
 * `GET` request
  * the client should pass the username and password to the server using a _Basic_ auth header
  * the server should respond with a token to authenticated users
- * the server should respond with a 401 Unauthorized to non authenticated users -->
+ * the server should respond with a 401 Unauthorized to non authenticated users
 
 ## Tests
-* your tests should start your server when they begin and stop your server when they finish
-* write a test to ensure that your api returns a status code of 404 for routes that have not been registered
-<!-- * `/api/signup`
- * `POST` - test 400, responds with the `http-errors` 400 name, for if no `body provided` or `invalid body` -->
- <!-- * `POST` - test 200, response body like `<token>` for a post request with a valid body -->
-<!-- * `/api/signin` -->
- * `GET` - test 401, responds with the `http-errors` 401 name, if the users could not be authenticated
- <!-- * `GET` - test 200, response body like `<token>` for a request with a valid basic auth header -->
+* The user starts the server when they begin and stop the server when they finish
+* Tests ensures that the api returns a status code of 404 for routes that have not been registered
+* `/api/signup`
+* `POST` - test 400, responds with the `http-errors` 400 name, for if no `body provided` or `invalid body`
+* `POST` - test 200, response body like `<token>` for a post request with a valid body -->
+* `/api/signin`
+* `GET` - test 401, responds with the `http-errors` 401 name, if the users could not be authenticated
+* `GET` - test 200, response body like `<token>` for a request with a valid basic auth header
